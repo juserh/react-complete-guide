@@ -8,8 +8,8 @@ const ExpensesChart = (props) => {
     { label: "Mar", value: 0 },
     { label: "Apr", value: 0 },
     { label: "May", value: 0 },
-    { label: "June", value: 0 },
-    { label: "July", value: 0 },
+    { label: "Jun", value: 0 },
+    { label: "Jul", value: 0 },
     { label: "Aug", value: 0 },
     { label: "Sep", value: 0 },
     { label: "Oct", value: 0 },
@@ -17,7 +17,8 @@ const ExpensesChart = (props) => {
     { label: "Dec", value: 0 },
   ];
 
-  for (const expense in props.expenses) {
+  for (const expense of props.expenses) {
+    //객체는 in, 배열은 of
     const expenseMonth = expense.date.getMonth(); //starting at 0(Jan->0)
     chartDataPoints[expenseMonth].value += expense.amount;
   }
