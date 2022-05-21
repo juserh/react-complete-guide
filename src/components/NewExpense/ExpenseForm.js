@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
+  const [visible, setVisible] = useState(false);
+
+  const clickHandler = () => {
+    setVisible((prevState) => {
+      return !prevState;
+    });
+  };
+
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -48,7 +56,15 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    setVisible((prevState) => {
+      return !prevState;
+    });
   };
+
+  if (visible === false) {
+    return <button onClick={clickHandler}>Add Expense</button>;
+  }
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -82,6 +98,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={clickHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
